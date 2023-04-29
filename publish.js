@@ -16,14 +16,23 @@ function updateVersion(packageJsonPath) {
   return newVersion;
 }
 
+function updateReadme(version, readmePath) {
+  const readme = fs.readFileSync(readmePath, 'utf8');
+  const newReadme = readme.replace(/Version: \d+\.\d+\.\d+/g, `Version: ${version}`);
+  fs.writeFileSync(readmePath, newReadme);
+}
+
 function main() {
   const packageJsonPath = 'package.json';
   const tokenPath = 'C:\\PosetMage\\Package\\_token\\azure_token';
+  const readmePath = 'README.md';
 
   const newVersion = updateVersion(packageJsonPath);
 
+  // Update the README.md file
+  updateReadme(newVersion, readmePath);
+
   // Run git commands
-  execSync(`git pull`);
   execSync(`git add .`);
   execSync(`git commit -m "Update to version ${newVersion}"`);
   execSync(`git push`);
