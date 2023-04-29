@@ -23,6 +23,7 @@ function main() {
   const newVersion = updateVersion(packageJsonPath);
 
   // Run git commands
+  execSync(`git pull`);
   execSync(`git add .`);
   execSync(`git commit -m "Update to version ${newVersion}"`);
   execSync(`git push`);
