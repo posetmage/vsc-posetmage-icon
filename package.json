@@ -1,0 +1,60 @@
+{
+  "name": "posetmage-icon",
+  "displayName": "PosetMage Icon",
+  "description": "show PosetMage icon at left bar",
+  "version": "1.0.2",
+  "engines": {
+    "vscode": "^1.77.0"
+  },
+  "publisher": "PosetMage",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/posetmage/vsc-posetmage-icon.git"
+  },
+  "categories": [
+    "Other"
+  ],
+  "icon": "resources/pom-white.png",
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "my-custom-icon",
+          "title": "My Custom Icon",
+          "icon": "resources/pom.svg"
+        }
+      ]
+    },
+    "views": {
+      "my-custom-icon": [
+        {
+          "id": "myCustomView",
+          "name": "My Custom View"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.77.0",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^5.59.1",
+    "@typescript-eslint/parser": "^5.59.1",
+    "eslint": "^8.39.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "typescript": "^5.0.4",
+    "@vscode/test-electron": "^2.3.0"
+  }
+}

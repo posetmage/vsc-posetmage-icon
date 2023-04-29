@@ -1,1 +1,3 @@
-# vsc-posetmage-icon
+# posetmage-icon 
+
+This is just posetmage icon showing
