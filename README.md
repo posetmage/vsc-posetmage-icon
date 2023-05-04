@@ -2,7 +2,7 @@
 
 This is just posetmage icon showing
 
-Version: 1.0.9
+Version: 1.0.10
 
 ## marketplace
 https://marketplace.visualstudio.com/items?itemName=PosetMage.posetmage-icon

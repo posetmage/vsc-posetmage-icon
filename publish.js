@@ -33,6 +33,8 @@ function main() {
   updateReadme(newVersion, readmePath);
 
   // Run git commands
+  execSync(`git config --local user.name "PosetMage"`);
+  execSync(`git config --local user.email "posetmage@gmail.com"`);  
   execSync(`git add .`);
   execSync(`git commit -m "Update to version ${newVersion}"`);
   execSync(`git push`);
