@@ -1,5 +1,6 @@
 const fs = require('fs');
 const { execSync } = require('child_process');
+const standardVersion = require('standard-version');
 
 function updateVersion(packageJsonPath) {
   const data = fs.readFileSync(packageJsonPath, 'utf8');
@@ -22,22 +23,37 @@ function updateReadme(version, readmePath) {
   fs.writeFileSync(readmePath, newReadme);
 }
 
-function main() {
+async function main() {
   const packageJsonPath = 'package.json';
   const tokenPath = 'C:\\PosetMage\\Package\\_token\\azure_token';
   const readmePath = 'README.md';
-
+  const changelogPath = 'CHANGELOG.md';
   const newVersion = updateVersion(packageJsonPath);
 
-  // Update the README.md file
-  updateReadme(newVersion, readmePath);
+  const commitMessagePath = process.argv[3] === '--changelog' ? process.argv[4] : null;
+  const commitMessage = commitMessagePath ? fs.readFileSync(commitMessagePath, 'utf8').trim() : 'Update';
+
+  // Add the new version to the first line of the commit message file
+  if (commitMessagePath) {
+    const updatedCommitMessage = `Version: ${newVersion}\n\n${commitMessage}`;
+    fs.writeFileSync(commitMessagePath, updatedCommitMessage);
+  }
 
   // Run git commands
   execSync(`git config --local user.name "PosetMage"`);
-  execSync(`git config --local user.email "posetmage@gmail.com"`);  
+  execSync(`git config --local user.email "posetmage@gmail.com"`);
   execSync(`git add .`);
-  execSync(`git commit -m "Update to version ${newVersion}"`);
+  execSync(`git commit -F ${commitMessagePath || '-'}`, { input: commitMessage });
   execSync(`git push`);
+
+  // Update the version using standard-version
+  await standardVersion({
+    infile: changelogPath,
+    releaseCommitMessageFormat: commitMessage || 'chore(release): {{currentTag}}',
+  });
+
+  // Update the README.md file
+  updateReadme(newVersion, readmePath);
 
   // Package the extension
   execSync(`vsce package`);
