@@ -2,9 +2,9 @@
   "name": "posetmage-icon",
   "displayName": "PosetMage Icon",
   "description": "show PosetMage icon at left bar",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "engines": {
-    "vscode": "^1.77.0"
+    "vscode": "^1.78.0"
   },
   "publisher": "PosetMage",
   "repository": {
@@ -45,7 +45,7 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.77.0",
+    "@types/vscode": "^1.78.0",
     "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.1",
     "@types/node": "16.x",
