@@ -2,7 +2,7 @@
   "name": "posetmage-icon",
   "displayName": "PosetMage Icon",
   "description": "show PosetMage icon at left bar",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "engines": {
     "vscode": "^1.78.0"
   },
