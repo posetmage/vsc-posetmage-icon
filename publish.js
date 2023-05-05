@@ -21,10 +21,10 @@ async function main() {
   execSync(`git commit -m "v${currentVersion}: ${commitMessage}"`);
   execSync(`git push`);
 
-  // Update the version using standard-version
+  // Update the version using standard-version with the custom release commit message format
   await standardVersion({
     infile: changelogPath,
-    releaseCommitMessageFormat: `v{{currentTag}}: ${commitMessage}`,
+    releaseCommitMessageFormat: `chore(release): v{{currentTag}} - ${commitMessage}`,
   });
 
   // Get the new version
