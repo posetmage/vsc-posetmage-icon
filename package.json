@@ -60,6 +60,7 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
-    "commander": "^10.0.1"
+    "commander": "^10.0.1",
+    "vsce": "^2.15.0"
   }
 }
