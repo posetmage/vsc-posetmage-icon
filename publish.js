@@ -18,13 +18,13 @@ async function main() {
 
   // Run git commands
   execSync(`git add .`);
-  execSync(`git commit -m "v${currentVersion}: ${commitMessage}"`);
+  execSync(`git commit -m "v${currentVersion}: ${commitMessage.replace(/"/g, '\\"')}"`);
   execSync(`git push`);
 
   // Update the version using standard-version with the custom release commit message format
   await standardVersion({
     infile: changelogPath,
-    releaseCommitMessageFormat: `chore(release): v{{currentTag}} - ${commitMessage}`,
+    releaseCommitMessageFormat: `chore(release): v{{currentTag}} - {{#${commitMessage}}}${commitMessage}{{/${commitMessage}}}`,
   });
 
   // Get the new version
